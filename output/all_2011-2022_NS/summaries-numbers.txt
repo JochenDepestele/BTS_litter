@@ -1,0 +1,677 @@
+============ Models on numbers ===============
+$Glass
+
+Family: Negative Binomial(0.138) 
+Link function: log 
+
+Formula:
+A1 ~ s(ctime, k = 12, bs = "ds", m = c(1, 0)) + s(lon, lat, bs = "ds", 
+    m = c(1, 0.5), k = 128) + offset(log(EFFORT))
+
+Parametric coefficients:
+             Estimate Std. Error z value Pr(>|z|)    
+(Intercept) -14.52319    0.09881    -147   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Approximate significance of smooth terms:
+                 edf Ref.df Chi.sq p-value    
+s(ctime)   4.707e-04     11    0.0   0.897    
+s(lon,lat) 3.711e+01    127  203.2  <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+R-sq.(adj) =  0.0432   Deviance explained =   34%
+-ML = 656.72  Scale est. = 1         n = 4062
+
+$Metal
+
+Family: Negative Binomial(1.042) 
+Link function: log 
+
+Formula:
+A1 ~ s(ctime, k = 12, bs = "ds", m = c(1, 0)) + s(lon, lat, bs = "ds", 
+    m = c(1, 0.5), k = 128) + offset(log(EFFORT))
+
+Parametric coefficients:
+             Estimate Std. Error z value Pr(>|z|)    
+(Intercept) -13.59563    0.05215  -260.7   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Approximate significance of smooth terms:
+                 edf Ref.df Chi.sq p-value    
+s(ctime)    0.001829     11  0.002   0.367    
+s(lon,lat) 24.269823    127 91.963  <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+R-sq.(adj) =  0.0276   Deviance explained = 7.09%
+-ML = 1051.8  Scale est. = 1         n = 4062
+
+$Natural
+
+Family: Negative Binomial(0.2) 
+Link function: log 
+
+Formula:
+A1 ~ s(ctime, k = 12, bs = "ds", m = c(1, 0)) + s(lon, lat, bs = "ds", 
+    m = c(1, 0.5), k = 128) + offset(log(EFFORT))
+
+Parametric coefficients:
+             Estimate Std. Error z value Pr(>|z|)    
+(Intercept) -13.01782    0.05673  -229.5   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Approximate significance of smooth terms:
+              edf Ref.df Chi.sq p-value    
+s(ctime)    8.944     11  73.87  <2e-16 ***
+s(lon,lat) 49.694    127 341.79  <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+R-sq.(adj) =  0.00499   Deviance explained =   36%
+-ML = 1701.9  Scale est. = 1         n = 4062
+
+$Other
+
+Family: Negative Binomial(0.466) 
+Link function: log 
+
+Formula:
+A1 ~ s(ctime, k = 12, bs = "ds", m = c(1, 0)) + s(lon, lat, bs = "ds", 
+    m = c(1, 0.5), k = 128) + offset(log(EFFORT))
+
+Parametric coefficients:
+             Estimate Std. Error z value Pr(>|z|)    
+(Intercept) -13.21340    0.05066  -260.8   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Approximate significance of smooth terms:
+              edf Ref.df Chi.sq p-value    
+s(ctime)    7.818     11  51.98  <2e-16 ***
+s(lon,lat) 46.862    127 452.94  <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+R-sq.(adj) =  0.168   Deviance explained = 30.4%
+-ML = 1542.3  Scale est. = 1         n = 4062
+
+$Plastic
+
+Family: Negative Binomial(1.316) 
+Link function: log 
+
+Formula:
+A1 ~ s(ctime, k = 12, bs = "ds", m = c(1, 0)) + s(lon, lat, bs = "ds", 
+    m = c(1, 0.5), k = 128) + offset(log(EFFORT))
+
+Parametric coefficients:
+             Estimate Std. Error z value Pr(>|z|)    
+(Intercept) -10.33489    0.01715  -602.8   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Approximate significance of smooth terms:
+              edf Ref.df Chi.sq p-value    
+s(ctime)    9.871     11  201.9  <2e-16 ***
+s(lon,lat) 86.813    127  931.6  <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+R-sq.(adj) =   0.12   Deviance explained = 24.6%
+-ML = 6436.9  Scale est. = 1         n = 4062
+
+$Rubber
+
+Family: Negative Binomial(0.981) 
+Link function: log 
+
+Formula:
+A1 ~ s(ctime, k = 12, bs = "ds", m = c(1, 0)) + s(lon, lat, bs = "ds", 
+    m = c(1, 0.5), k = 128) + offset(log(EFFORT))
+
+Parametric coefficients:
+             Estimate Std. Error z value Pr(>|z|)    
+(Intercept) -13.03290    0.04224  -308.5   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Approximate significance of smooth terms:
+              edf Ref.df Chi.sq p-value    
+s(ctime)    3.023     11  11.51 0.00141 ** 
+s(lon,lat) 45.754    127 262.04 < 2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+R-sq.(adj) =  0.066   Deviance explained = 14.4%
+-ML = 1603.5  Scale est. = 1         n = 4062
+
+$SUP
+
+Family: Negative Binomial(1.185) 
+Link function: log 
+
+Formula:
+A1 ~ s(ctime, k = 12, bs = "ds", m = c(1, 0)) + s(lon, lat, bs = "ds", 
+    m = c(1, 0.5), k = 128) + offset(log(EFFORT))
+
+Parametric coefficients:
+             Estimate Std. Error z value Pr(>|z|)    
+(Intercept) -11.42456    0.02299    -497   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Approximate significance of smooth terms:
+              edf Ref.df Chi.sq p-value    
+s(ctime)    9.342     11  89.72  <2e-16 ***
+s(lon,lat) 83.455    127 657.81  <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+R-sq.(adj) =  0.115   Deviance explained =   21%
+-ML = 4054.9  Scale est. = 1         n = 4062
+
+$Fishing.related
+
+Family: Negative Binomial(0.957) 
+Link function: log 
+
+Formula:
+A1 ~ s(ctime, k = 12, bs = "ds", m = c(1, 0)) + s(lon, lat, bs = "ds", 
+    m = c(1, 0.5), k = 128) + offset(log(EFFORT))
+
+Parametric coefficients:
+            Estimate Std. Error z value Pr(>|z|)    
+(Intercept)  -11.062      0.022  -502.7   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Approximate significance of smooth terms:
+              edf Ref.df Chi.sq p-value    
+s(ctime)    9.873     11  244.9  <2e-16 ***
+s(lon,lat) 68.137    127  671.2  <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+R-sq.(adj) =  0.112   Deviance explained = 23.7%
+-ML = 4790.8  Scale est. = 1         n = 4062
+
+=====================
+$Glass
+
+Family: Negative Binomial(0.147) 
+Link function: log 
+
+Formula:
+A1 ~ Year + s(lon, lat, bs = "ds", m = c(1, 0.5), k = 128) + 
+    offset(log(EFFORT))
+
+Parametric coefficients:
+             Estimate Std. Error z value Pr(>|z|)    
+(Intercept) -14.35658    0.44958 -31.933   <2e-16 ***
+Year2012     -0.36726    0.56778  -0.647    0.518    
+Year2013     -0.20328    0.55448  -0.367    0.714    
+Year2014      0.38002    0.56704   0.670    0.503    
+Year2015     -0.56451    0.57750  -0.978    0.328    
+Year2016     -0.14554    0.53796  -0.271    0.787    
+Year2017     -0.55101    0.52854  -1.043    0.297    
+Year2018      0.12682    0.49571   0.256    0.798    
+Year2019     -0.14601    0.50361  -0.290    0.772    
+Year2020     -0.04465    0.50519  -0.088    0.930    
+Year2021     -0.53721    0.51548  -1.042    0.297    
+Year2022      0.21008    0.53201   0.395    0.693    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Approximate significance of smooth terms:
+             edf Ref.df Chi.sq p-value    
+s(lon,lat) 35.86    127  191.3  <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+R-sq.(adj) =  0.0475   Deviance explained = 34.7%
+-ML =  652.2  Scale est. = 1         n = 4062
+
+$Metal
+
+Family: Negative Binomial(1.141) 
+Link function: log 
+
+Formula:
+A1 ~ Year + s(lon, lat, bs = "ds", m = c(1, 0.5), k = 128) + 
+    offset(log(EFFORT))
+
+Parametric coefficients:
+            Estimate Std. Error z value Pr(>|z|)    
+(Intercept) -14.3332     0.4236 -33.840  < 2e-16 ***
+Year2012      0.6551     0.4786   1.369  0.17103    
+Year2013      0.3178     0.4957   0.641  0.52138    
+Year2014      1.3779     0.4678   2.946  0.00322 ** 
+Year2015      0.7240     0.4673   1.549  0.12134    
+Year2016      0.9010     0.4579   1.968  0.04911 *  
+Year2017      0.7787     0.4508   1.728  0.08408 .  
+Year2018      0.7025     0.4506   1.559  0.11897    
+Year2019      0.6297     0.4517   1.394  0.16330    
+Year2020      0.9084     0.4436   2.048  0.04057 *  
+Year2021      0.7565     0.4443   1.703  0.08863 .  
+Year2022      0.4726     0.4678   1.010  0.31246    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Approximate significance of smooth terms:
+             edf Ref.df Chi.sq p-value    
+s(lon,lat) 23.91    127   86.4  <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+R-sq.(adj) =  0.0314   Deviance explained = 8.16%
+-ML = 1044.1  Scale est. = 1         n = 4062
+
+$Natural
+
+Family: Negative Binomial(0.206) 
+Link function: log 
+
+Formula:
+A1 ~ Year + s(lon, lat, bs = "ds", m = c(1, 0.5), k = 128) + 
+    offset(log(EFFORT))
+
+Parametric coefficients:
+            Estimate Std. Error z value Pr(>|z|)    
+(Intercept) -15.2325     0.5109 -29.816  < 2e-16 ***
+Year2012      2.1986     0.5484   4.009 6.10e-05 ***
+Year2013      1.7273     0.5561   3.106  0.00190 ** 
+Year2014      2.2493     0.5683   3.958 7.55e-05 ***
+Year2015      2.2024     0.5457   4.036 5.43e-05 ***
+Year2016      2.5139     0.5399   4.656 3.22e-06 ***
+Year2017      1.4877     0.5406   2.752  0.00593 ** 
+Year2018      2.3832     0.5285   4.509 6.52e-06 ***
+Year2019      2.1709     0.5299   4.097 4.19e-05 ***
+Year2020      2.1466     0.5299   4.051 5.11e-05 ***
+Year2021      2.2095     0.5279   4.185 2.85e-05 ***
+Year2022      3.2907     0.5362   6.137 8.41e-10 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Approximate significance of smooth terms:
+             edf Ref.df Chi.sq p-value    
+s(lon,lat) 49.85    127  353.4  <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+R-sq.(adj) =  0.00483   Deviance explained = 36.5%
+-ML = 1683.8  Scale est. = 1         n = 4062
+
+$Other
+
+Family: Negative Binomial(0.482) 
+Link function: log 
+
+Formula:
+A1 ~ Year + s(lon, lat, bs = "ds", m = c(1, 0.5), k = 128) + 
+    offset(log(EFFORT))
+
+Parametric coefficients:
+            Estimate Std. Error z value Pr(>|z|)    
+(Intercept) -14.3540     0.4179 -34.347  < 2e-16 ***
+Year2012      1.0627     0.4572   2.324 0.020107 *  
+Year2013      0.9493     0.4591   2.068 0.038664 *  
+Year2014      1.0825     0.4744   2.282 0.022507 *  
+Year2015      0.4166     0.4739   0.879 0.379396    
+Year2016      1.8791     0.4395   4.276  1.9e-05 ***
+Year2017      1.4752     0.4371   3.375 0.000738 ***
+Year2018      1.5338     0.4344   3.531 0.000414 ***
+Year2019      1.0505     0.4402   2.386 0.017018 *  
+Year2020      0.9076     0.4388   2.068 0.038607 *  
+Year2021      0.9820     0.4366   2.249 0.024498 *  
+Year2022      1.1419     0.4476   2.551 0.010734 *  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Approximate significance of smooth terms:
+             edf Ref.df Chi.sq p-value    
+s(lon,lat) 47.07    127  449.4  <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+R-sq.(adj) =  0.177   Deviance explained = 30.8%
+-ML = 1527.5  Scale est. = 1         n = 4062
+
+$Plastic
+
+Family: Negative Binomial(1.327) 
+Link function: log 
+
+Formula:
+A1 ~ Year + s(lon, lat, bs = "ds", m = c(1, 0.5), k = 128) + 
+    offset(log(EFFORT))
+
+Parametric coefficients:
+            Estimate Std. Error z value Pr(>|z|)    
+(Intercept) -11.6295     0.1356 -85.774  < 2e-16 ***
+Year2012      0.8429     0.1582   5.327 9.97e-08 ***
+Year2013      1.0984     0.1559   7.047 1.82e-12 ***
+Year2014      1.3308     0.1652   8.055 7.95e-16 ***
+Year2015      1.0339     0.1531   6.754 1.44e-11 ***
+Year2016      1.5048     0.1488  10.112  < 2e-16 ***
+Year2017      1.2932     0.1453   8.899  < 2e-16 ***
+Year2018      1.1833     0.1452   8.149 3.68e-16 ***
+Year2019      1.5942     0.1439  11.080  < 2e-16 ***
+Year2020      1.4030     0.1440   9.742  < 2e-16 ***
+Year2021      1.2741     0.1434   8.887  < 2e-16 ***
+Year2022      1.5943     0.1479  10.782  < 2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Approximate significance of smooth terms:
+             edf Ref.df Chi.sq p-value    
+s(lon,lat) 86.88    127  934.2  <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+R-sq.(adj) =  0.121   Deviance explained = 24.8%
+-ML =   6415  Scale est. = 1         n = 4062
+
+$Rubber
+
+Family: Negative Binomial(1.045) 
+Link function: log 
+
+Formula:
+A1 ~ Year + s(lon, lat, bs = "ds", m = c(1, 0.5), k = 128) + 
+    offset(log(EFFORT))
+
+Parametric coefficients:
+            Estimate Std. Error z value Pr(>|z|)    
+(Intercept) -14.0448     0.3372 -41.648  < 2e-16 ***
+Year2012      0.7898     0.3788   2.085 0.037080 *  
+Year2013      0.5580     0.3859   1.446 0.148133    
+Year2014      1.3108     0.3808   3.443 0.000576 ***
+Year2015      0.7870     0.3745   2.101 0.035609 *  
+Year2016      1.2079     0.3619   3.337 0.000846 ***
+Year2017      0.8580     0.3608   2.378 0.017390 *  
+Year2018      0.9427     0.3573   2.639 0.008322 ** 
+Year2019      0.9654     0.3566   2.707 0.006783 ** 
+Year2020      1.2784     0.3508   3.644 0.000269 ***
+Year2021      1.0277     0.3523   2.917 0.003534 ** 
+Year2022      1.2264     0.3625   3.383 0.000717 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Approximate significance of smooth terms:
+             edf Ref.df Chi.sq p-value    
+s(lon,lat) 45.59    127  255.5  <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+R-sq.(adj) =  0.0724   Deviance explained = 15.1%
+-ML = 1592.6  Scale est. = 1         n = 4062
+
+$SUP
+
+Family: Negative Binomial(1.195) 
+Link function: log 
+
+Formula:
+A1 ~ Year + s(lon, lat, bs = "ds", m = c(1, 0.5), k = 128) + 
+    offset(log(EFFORT))
+
+Parametric coefficients:
+            Estimate Std. Error z value Pr(>|z|)    
+(Intercept) -12.5993     0.1908 -66.048  < 2e-16 ***
+Year2012      0.8063     0.2188   3.685 0.000229 ***
+Year2013      1.1659     0.2135   5.460 4.76e-08 ***
+Year2014      1.3515     0.2235   6.046 1.48e-09 ***
+Year2015      0.9144     0.2116   4.321 1.56e-05 ***
+Year2016      1.4908     0.2046   7.285 3.23e-13 ***
+Year2017      1.0792     0.2024   5.331 9.76e-08 ***
+Year2018      1.1692     0.2014   5.805 6.44e-09 ***
+Year2019      1.2127     0.2009   6.036 1.58e-09 ***
+Year2020      1.3547     0.2005   6.756 1.41e-11 ***
+Year2021      1.1340     0.2002   5.664 1.48e-08 ***
+Year2022      1.3914     0.2053   6.779 1.21e-11 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Approximate significance of smooth terms:
+             edf Ref.df Chi.sq p-value    
+s(lon,lat) 83.65    127  667.4  <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+R-sq.(adj) =  0.114   Deviance explained =   21%
+-ML = 4038.4  Scale est. = 1         n = 4062
+
+$Fishing.related
+
+Family: Negative Binomial(0.971) 
+Link function: log 
+
+Formula:
+A1 ~ Year + s(lon, lat, bs = "ds", m = c(1, 0.5), k = 128) + 
+    offset(log(EFFORT))
+
+Parametric coefficients:
+            Estimate Std. Error z value Pr(>|z|)    
+(Intercept) -12.2532     0.1684 -72.755  < 2e-16 ***
+Year2012      0.7107     0.1977   3.595 0.000324 ***
+Year2013      0.9140     0.1945   4.700 2.60e-06 ***
+Year2014      1.1406     0.2059   5.541 3.01e-08 ***
+Year2015      0.8828     0.1922   4.593 4.37e-06 ***
+Year2016      1.3655     0.1858   7.350 1.97e-13 ***
+Year2017      0.6889     0.1839   3.746 0.000180 ***
+Year2018      1.1101     0.1805   6.148 7.82e-10 ***
+Year2019      1.7621     0.1779   9.905  < 2e-16 ***
+Year2020      1.3566     0.1785   7.598 3.00e-14 ***
+Year2021      1.2210     0.1780   6.860 6.90e-12 ***
+Year2022      1.6036     0.1831   8.757  < 2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Approximate significance of smooth terms:
+             edf Ref.df Chi.sq p-value    
+s(lon,lat) 67.98    127  665.5  <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+R-sq.(adj) =  0.114   Deviance explained = 23.9%
+-ML = 4767.1  Scale est. = 1         n = 4062
+
+=====================
+$Glass
+
+Family: Negative Binomial(0.138) 
+Link function: log 
+
+Formula:
+A1 ~ ctime + s(lon, lat, bs = "ds", m = c(1, 0.5), k = 128) + 
+    offset(log(EFFORT))
+
+Parametric coefficients:
+              Estimate Std. Error z value Pr(>|z|)
+(Intercept) -29.221342  57.710350  -0.506    0.613
+ctime         0.007282   0.028589   0.255    0.799
+
+Approximate significance of smooth terms:
+             edf Ref.df Chi.sq p-value    
+s(lon,lat) 37.04    127  201.3  <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+R-sq.(adj) =  0.0431   Deviance explained =   34%
+-ML = 656.69  Scale est. = 1         n = 4062
+
+$Metal
+
+Family: Negative Binomial(1.042) 
+Link function: log 
+
+Formula:
+A1 ~ ctime + s(lon, lat, bs = "ds", m = c(1, 0.5), k = 128) + 
+    offset(log(EFFORT))
+
+Parametric coefficients:
+              Estimate Std. Error z value Pr(>|z|)
+(Intercept) -16.740942  36.224329  -0.462    0.644
+ctime         0.001558   0.017945   0.087    0.931
+
+Approximate significance of smooth terms:
+             edf Ref.df Chi.sq p-value    
+s(lon,lat) 24.22    127   91.7  <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+R-sq.(adj) =  0.0273   Deviance explained = 7.08%
+-ML = 1051.8  Scale est. = 1         n = 4062
+
+$Natural
+
+Family: Negative Binomial(0.185) 
+Link function: log 
+
+Formula:
+A1 ~ ctime + s(lon, lat, bs = "ds", m = c(1, 0.5), k = 128) + 
+    offset(log(EFFORT))
+
+Parametric coefficients:
+              Estimate Std. Error z value Pr(>|z|)    
+(Intercept) -196.69318   36.78421  -5.347 8.93e-08 ***
+ctime          0.09102    0.01822   4.996 5.87e-07 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Approximate significance of smooth terms:
+             edf Ref.df Chi.sq p-value    
+s(lon,lat) 49.78    127  361.2  <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+R-sq.(adj) =  0.00477   Deviance explained = 33.3%
+-ML =   1708  Scale est. = 1         n = 4062
+
+$Other
+
+Family: Negative Binomial(0.39) 
+Link function: log 
+
+Formula:
+A1 ~ ctime + s(lon, lat, bs = "ds", m = c(1, 0.5), k = 128) + 
+    offset(log(EFFORT))
+
+Parametric coefficients:
+              Estimate Std. Error z value Pr(>|z|)
+(Intercept) -25.731868  32.840916  -0.784    0.433
+ctime         0.006225   0.016269   0.383    0.702
+
+Approximate significance of smooth terms:
+             edf Ref.df Chi.sq p-value    
+s(lon,lat) 45.04    127  472.5  <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+R-sq.(adj) =  0.101   Deviance explained = 27.4%
+-ML = 1551.9  Scale est. = 1         n = 4062
+
+$Plastic
+
+Family: Negative Binomial(1.253) 
+Link function: log 
+
+Formula:
+A1 ~ ctime + s(lon, lat, bs = "ds", m = c(1, 0.5), k = 128) + 
+    offset(log(EFFORT))
+
+Parametric coefficients:
+              Estimate Std. Error z value Pr(>|z|)    
+(Intercept) -1.308e+02  1.294e+01 -10.106   <2e-16 ***
+ctime        5.966e-02  6.409e-03   9.309   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Approximate significance of smooth terms:
+            edf Ref.df Chi.sq p-value    
+s(lon,lat) 85.2    127  932.8  <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+R-sq.(adj) =  0.104   Deviance explained = 22.1%
+-ML = 6462.4  Scale est. = 1         n = 4062
+
+$Rubber
+
+Family: Negative Binomial(0.976) 
+Link function: log 
+
+Formula:
+A1 ~ ctime + s(lon, lat, bs = "ds", m = c(1, 0.5), k = 128) + 
+    offset(log(EFFORT))
+
+Parametric coefficients:
+              Estimate Std. Error z value Pr(>|z|)    
+(Intercept) -106.74756   28.46139  -3.751 0.000176 ***
+ctime          0.04643    0.01410   3.293 0.000991 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Approximate significance of smooth terms:
+             edf Ref.df Chi.sq p-value    
+s(lon,lat) 45.61    127  264.6  <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+R-sq.(adj) =  0.0652   Deviance explained = 14.2%
+-ML = 1601.5  Scale est. = 1         n = 4062
+
+$SUP
+
+Family: Negative Binomial(1.134) 
+Link function: log 
+
+Formula:
+A1 ~ ctime + s(lon, lat, bs = "ds", m = c(1, 0.5), k = 128) + 
+    offset(log(EFFORT))
+
+Parametric coefficients:
+              Estimate Std. Error z value Pr(>|z|)    
+(Intercept) -89.456141  16.390671  -5.458 4.82e-08 ***
+ctime         0.038666   0.008119   4.762 1.92e-06 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Approximate significance of smooth terms:
+            edf Ref.df Chi.sq p-value    
+s(lon,lat) 82.5    127  657.2  <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+R-sq.(adj) =  0.106   Deviance explained = 19.1%
+-ML = 4067.3  Scale est. = 1         n = 4062
+
+$Fishing.related
+
+Family: Negative Binomial(0.879) 
+Link function: log 
+
+Formula:
+A1 ~ ctime + s(lon, lat, bs = "ds", m = c(1, 0.5), k = 128) + 
+    offset(log(EFFORT))
+
+Parametric coefficients:
+              Estimate Std. Error z value Pr(>|z|)    
+(Intercept) -1.835e+02  1.648e+01  -11.14   <2e-16 ***
+ctime        8.543e-02  8.161e-03   10.47   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Approximate significance of smooth terms:
+             edf Ref.df Chi.sq p-value    
+s(lon,lat) 66.91    127  719.1  <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+R-sq.(adj) =  0.0746   Deviance explained = 20.5%
+-ML = 4821.9  Scale est. = 1         n = 4062
+
