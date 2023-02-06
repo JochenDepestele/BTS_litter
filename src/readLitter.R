@@ -189,6 +189,8 @@ readlitter <- function (file = "IBTS.csv", na.strings = c("-9", "-9.0", "-9.00",
     d[[1]]$EFFORT = TVS_TVL[2]/30 * d[[1]]$HaulDur
     d[[1]]$EFFORT[ d[[1]]$Gear == "TVS" ] = TVS_TVL[4]/30 * d[[1]]$HaulDur[ d[[1]]$Gear == "TVS" ]
     
+    # estimate EFFORT in m² !!!
+    
     d[[1]]
 }
 
