@@ -28,7 +28,6 @@ for (NR_RUNS in selreg){
   litterTypesExt = c(litterTypes,"SUP","Fishing.related")
   
   setwd(file.path("src"))
-  #setwd(file.path("C:/Users/jdepestele/OneDrive - ILVO/gitr/SEAwise/SEAwise_T4-5/BTS_litter/src"))
   datafile = "../data/Litter Exchange Data_2023-01-19 10_58_43.zip"
   
   d = readlitter(datafile,type="Weight")
