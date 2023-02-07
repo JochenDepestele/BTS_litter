@@ -183,11 +183,37 @@ readlitter <- function (file = "IBTS.csv", na.strings = c("-9", "-9.0", "-9.00",
     d[[1]]$Year = factor(d[[1]]$Year)
 
     d[[1]]$TimeShotHour = 12
+    
+    ## check distance
+    r_earth<-6371 #km
+    L_s<-d[[1]]$ShootLat
+    l_s<-d[[1]]$ShootLong
+    L_h<-d[[1]]$HaulLat
+    l_h<-d[[1]]$HaulLong
+    
+    
+    D= 1000* r_earth * acos ( cos( (90-L_s) * (pi/180)) * cos((90-L_h)* (pi/180))  + 
+         sin((90-L_s)*(pi/180))*sin((90-L_h)*(pi/180))*cos((l_s-l_h)* (pi/180)) )
+    
+    d[[1]]$Distance_Calculated<-D
+    D_used<-d[[1]]$Distance
+    
+    #if Distance is NA used calculated distance
+    D_used[which(is.na(D_used))]<- D[which(is.na(D_used))]
+    
+    D_used[which( D*0.8>=d[[1]]$Distance | D*1.2<= d[[1]]$Distance)]<- D[which( D*0.8>=d[[1]]$Distance | D*1.2<= d[[1]]$Distance)]
+    d[[1]]$Distance_Used<-D_used
 
     TVS_TVL = TVS2TVL()
     
-    d[[1]]$EFFORT = TVS_TVL[2]/30 * d[[1]]$HaulDur
-    d[[1]]$EFFORT[ d[[1]]$Gear == "TVS" ] = TVS_TVL[4]/30 * d[[1]]$HaulDur[ d[[1]]$Gear == "TVS" ]
+    #isolate the beam length
+    beam_distance<-as.numeric(gsub(".*?([0-9]+).*", "\\1", as.character(d[[1]]$Gear)))
+    
+    #Surface = distance of haul times beam length
+    d[[1]]$EFFORT = d[[1]]$Distance_Used * beam_distance 
+    
+    #d[[1]]$EFFORT = TVS_TVL[2]/30 * d[[1]]$HaulDur
+    #d[[1]]$EFFORT[ d[[1]]$Gear == "TVS" ] = TVS_TVL[4]/30 * d[[1]]$HaulDur[ d[[1]]$Gear == "TVS" ]
     
     # estimate EFFORT in m² !!!
     
