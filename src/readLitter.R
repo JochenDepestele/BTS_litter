@@ -112,7 +112,7 @@ readlitter <- function (file = "IBTS.csv", na.strings = c("-9", "-9.0", "-9.00",
         stop()
     }
     
-    conv = read.csv("../data/litter_conversion.csv")
+    conv = read.csv("./data/litter_conversion.csv")
     lookup <- function(x,table){
         x <- factor(x)
         levels(x) <- table[levels(x)]

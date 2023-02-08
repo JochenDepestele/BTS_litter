@@ -16,8 +16,10 @@ library(surveyIndex)
 library(marmap)
 library(plot.matrix)
 library(xtable)
+library(maptools)
+library(sp)
 
-source("readLitter.R")
+source("./src/readLitter.R")
 
 selreg <- c("NWW","NS")
 
@@ -27,8 +29,8 @@ for (NR_RUNS in selreg){
   
   litterTypesExt = c(litterTypes,"SUP","Fishing.related")
   
-  setwd(file.path("src"))
-  datafile = "../data/Litter Exchange Data_2023-01-19 10_58_43.zip"
+  # setwd(file.path("src"))
+  datafile = "./data/Litter Exchange Data_2023-01-19 10_58_43.zip"
   
   d = readlitter(datafile,type="Weight")
   
@@ -44,10 +46,10 @@ for (NR_RUNS in selreg){
   ## Make tables with data overview
   makeTable<-function(x,fil,cap) cat(print(xtable( x, caption=cap, digits=0)),file=fil)
 
-  makeTable( xtabs(~Year+Quarter,d), fil=paste0("../report/",NR_RUNS,"/yqtab.tex"),cap="Weight: Number of hauls by year and quarter")
-  makeTable( xtabs(~Year+Country,d), fil=paste0("../report/",NR_RUNS,"/yctab.tex"),cap="Weight: Number of hauls by year and country")
-  makeTable( xtabs(~Gear+Country,d), fil=paste0("../report/",NR_RUNS,"/gctab.tex"),cap="Weight: Number of hauls by gear and country")
-  makeTable( xtabs(~Country+Quarter,d), fil=paste0("../report/",NR_RUNS,"/cqtab.tex"),cap="Weight: Number of hauls by country and quarter")
+  makeTable( xtabs(~Year+Quarter,d), fil=paste0("./report/",NR_RUNS,"/yqtab.tex"),cap="Weight: Number of hauls by year and quarter")
+  makeTable( xtabs(~Year+Country,d), fil=paste0("./report/",NR_RUNS,"/yctab.tex"),cap="Weight: Number of hauls by year and country")
+  makeTable( xtabs(~Gear+Country,d), fil=paste0("./report/",NR_RUNS,"/gctab.tex"),cap="Weight: Number of hauls by gear and country")
+  makeTable( xtabs(~Country+Quarter,d), fil=paste0("./report/",NR_RUNS,"/cqtab.tex"),cap="Weight: Number of hauls by country and quarter")
 
 
 
@@ -66,7 +68,7 @@ for (NR_RUNS in selreg){
   drd = df2dr(d)
 
   ## Get prediction grid
-  bgrid <- getBathyGrid(drd,minDepth=1,maxDepth=1000,maxDist=Inf,resolution=3,shapefile="../shapefiles/ICES/ICES_areas.shp",select="ICES_SUB")
+  bgrid <- getBathyGrid(drd,minDepth=1,maxDepth=1000,maxDist=Inf,resolution=3,shapefile="./shapefiles/ICES/ICES_areas.shp",select="ICES_SUB")
   # bgrid = subset(bgrid, ICES_SUB %in% c("VIIa","VIIf","VIIg"))
 
   if(NR_RUNS=="NS"){
@@ -75,14 +77,14 @@ for (NR_RUNS in selreg){
 
   bgrid = subset(bgrid, ICES_SUB %in% whichregion)
 
-  tmp = addSpatialData(df2dr(bgrid),shape="../shapefiles/EEZshape/EMODnet_HA_OtherManagementAreas_EEZ_v11_20210506.shp")
+  tmp = addSpatialData(df2dr(bgrid),shape="./shapefiles/EEZshape/EMODnet_HA_OtherManagementAreas_EEZ_v11_20210506.shp")
   bgrid = tmp[[2]]
   bgrid$Territory = factor(bgrid$Territory) ## drop empty factor levels
 
   ## Plot bathy grid
   my.palette<-colorRampPalette(c("darkblue","mediumblue","lightblue1"))
   my.palette.vec=my.palette(100);
-  png(paste0("../output/",NR_RUNS,"/bathygrid.png"),width=1200,height=800)
+  png(paste0("./output/",NR_RUNS,"/bathygrid.png"),width=1200,height=800)
   plot(bgrid$lon,bgrid$lat,col=rev(my.palette.vec)[cut(bgrid$Depth,100)],pch=15,cex=1.3)
   maps::map("worldHires", fill = TRUE, plot = TRUE,
             add = TRUE, col = grey(0.5))
@@ -90,7 +92,7 @@ for (NR_RUNS in selreg){
   dev.off()
 
   ## Plot EEZ map
-  png(paste0("../output/",NR_RUNS,"/EEZmap.png"),width=1200,height=800)
+  png(paste0("./output/",NR_RUNS,"/EEZmap.png"),width=1200,height=800)
   plot(bgrid$lon,bgrid$lat,col=bgrid$Territory,pch=15,cex=1.3)
   maps::map("worldHires", fill = TRUE, plot = TRUE,
             add = TRUE, col = grey(0.9))
@@ -147,7 +149,7 @@ for (NR_RUNS in selreg){
   }
 
 
-  png(paste0("../output/",NR_RUNS,"/allmodels.png"),width=1200,height=800,pointsize=24)
+  png(paste0("./output/",NR_RUNS,"/allmodels.png"),width=1200,height=800,pointsize=24)
   par(mfrow=c(2,4))
   for(i in 1:length(models)){
     surveyIndex:::plot.SIlist(list(models[[i]],models2[[i]],models3[[i]]),main=names(models)[i])
@@ -158,7 +160,7 @@ for (NR_RUNS in selreg){
   maxBubble = 8
 
   for(lt in litterTypesExt){
-    png(paste0("../output/",NR_RUNS,"/",lt,"%03d.png"),width=1200,height=800)
+    png(paste0("./output/",NR_RUNS,"/",lt,"%03d.png"),width=1200,height=800)
 
     ## Bubble plots - one per year
     myscale=maxBubble/max(sqrt(d[,lt]))
@@ -196,7 +198,7 @@ for (NR_RUNS in selreg){
 
 
   ## Plot them all
-  png(paste0("../output/",NR_RUNS,"/allidx.png"),width=1200,height=800,pointsize=24)
+  png(paste0("./output/",NR_RUNS,"/allidx.png"),width=1200,height=800,pointsize=24)
 
   allidxs = lapply(models[-3],function(x)x$idx)
   maxY = max(sapply( allidxs,max))
@@ -215,7 +217,7 @@ for (NR_RUNS in selreg){
 
   ## Export model summaries
 
-  sink(paste0("../output/",NR_RUNS,"/summaries.txt"))
+  sink(paste0("./output/",NR_RUNS,"/summaries.txt"))
   lapply(models,function(x) { summary(x$pModels[[1]])  } )
   cat("=====================\n")
   lapply(models2,function(x) { summary(x$pModels[[1]])  } )
@@ -255,7 +257,7 @@ for (NR_RUNS in selreg){
   }
 
   col <- colorRampPalette(rev(c("red", "white", "blue")))
-  png(paste0("../output/",NR_RUNS,"/EEZplot%03d.png"),width=1200,height=800)
+  png(paste0("./output/",NR_RUNS,"/EEZplot%03d.png"),width=1200,height=800)
 
   par(mfrow=c(1,1),mar=c(5,5,4,4))
   plot(EEZmat,col=col,fmt.cell="%.2f",fmt.key="%.2f",las=1,xlab="",ylab="",main=paste("Litter density (kg / km^2) by EEZ",tail(levels(d$Year),1)))
@@ -278,10 +280,10 @@ for (NR_RUNS in selreg){
   drd = df2dr(d)
   
   
-  makeTable( xtabs(~Year+Quarter,d), fil=paste0("../report/",NR_RUNS,"/yqtab-n.tex"),cap="Numbers: Number of hauls by year and quarter")
-  makeTable( xtabs(~Year+Country,d), fil=paste0("../report/",NR_RUNS,"/yctab-n.tex"),cap="Numbers: Number of hauls by year and country")
-  makeTable( xtabs(~Gear+Country,d), fil=paste0("../report/",NR_RUNS,"/gctab-n.tex"),cap="Numbers: Number of hauls by gear and country")
-  makeTable( xtabs(~Country+Quarter,d), fil=paste0("../report/",NR_RUNS,"/cqtab-n.tex"),cap="Numbers: Number of hauls by country and quarter")
+  makeTable( xtabs(~Year+Quarter,d), fil=paste0("./report/",NR_RUNS,"/yqtab-n.tex"),cap="Numbers: Number of hauls by year and quarter")
+  makeTable( xtabs(~Year+Country,d), fil=paste0("./report/",NR_RUNS,"/yctab-n.tex"),cap="Numbers: Number of hauls by year and country")
+  makeTable( xtabs(~Gear+Country,d), fil=paste0("./report/",NR_RUNS,"/gctab-n.tex"),cap="Numbers: Number of hauls by gear and country")
+  makeTable( xtabs(~Country+Quarter,d), fil=paste0("./report/",NR_RUNS,"/cqtab-n.tex"),cap="Numbers: Number of hauls by country and quarter")
   
   
   
@@ -308,7 +310,7 @@ for (NR_RUNS in selreg){
   }
   
   
-  png(paste0("../output/",NR_RUNS,"/allmodels-numbers.png"),width=1200,height=800,pointsize=24)   
+  png(paste0("./output/",NR_RUNS,"/allmodels-numbers.png"),width=1200,height=800,pointsize=24)   
   par(mfrow=c(2,4))
   for(i in 1:length(models)){
     surveyIndex:::plot.SIlist(list(nmodels[[i]],nmodels2[[i]],nmodels3[[i]]),main=names(models)[i])
@@ -317,7 +319,7 @@ for (NR_RUNS in selreg){
   
   ## Maps
   for(lt in litterTypesExt){
-    png(paste0("../output/",NR_RUNS,"/",lt,"-numbers.png"),width=1200,height=800)
+    png(paste0("./output/",NR_RUNS,"/",lt,"-numbers.png"),width=1200,height=800)
     
     surveyIdxPlots(nmodels[[lt]],drd,myids=NULL,predD=bgrid,select="map",colors=rev(heat.colors(7)),legend=TRUE,legend.signif=2,map.cex=1.3,par=list(mfrow=c(1,1)),main=lt)
     
@@ -327,7 +329,7 @@ for (NR_RUNS in selreg){
   
   
   ## Output summaries
-  sink(paste0("../output/",NR_RUNS,"/summaries-numbers.txt"))
+  sink(paste0("./output/",NR_RUNS,"/summaries-numbers.txt"))
   cat("============ Models on numbers ===============\n")
   lapply(nmodels,function(x) { summary(x$pModels[[1]])  } )
   cat("=====================\n")
@@ -367,7 +369,7 @@ for (NR_RUNS in selreg){
   }
   
   col <- colorRampPalette(rev(c("red", "white", "blue")))
-  png(paste0("../output/",NR_RUNS,"/EEZplotn%03d.png"),width=1200,height=800)
+  png(paste0("./output/",NR_RUNS,"/EEZplotn%03d.png"),width=1200,height=800)
   
   par(mfrow=c(1,1),mar=c(5,5,4,4))
   plot(EEZmat,col=col,fmt.cell="%.2f",fmt.key="%.2f",las=1,xlab="",ylab="",main=paste("Litter density (numbers / km^2) by EEZ",tail(levels(d$Year),1)))
@@ -406,7 +408,7 @@ for (NR_RUNS in selreg){
   }
   
   
-  png(paste0("../output/",NR_RUNS,"/allmodels-posprob.png"),width=1200,height=800,pointsize=24)   
+  png(paste0("./output/",NR_RUNS,"/allmodels-posprob.png"),width=1200,height=800,pointsize=24)   
   par(mfrow=c(2,4))
   for(i in 1:length(pmodels)){
     surveyIndex:::plot.SIlist(list(pmodels[[i]],pmodels2[[i]],pmodels3[[i]]),main=names(pmodels)[i],posProb=TRUE)
@@ -420,7 +422,7 @@ for (NR_RUNS in selreg){
   probcols = rev(hcl.colors(7,palette="Reds 3")) 
   
   for(lt in litterTypesExt){
-    png(paste0("../output/",NR_RUNS,"/",lt,"-posprob.png"),width=1200,height=800)
+    png(paste0("./output/",NR_RUNS,"/",lt,"-posprob.png"),width=1200,height=800)
     
     surveyIdxPlots(pmodels[[lt]],drd,myids=NULL,predD=bgrid,select="absolutemap",colors=probcols,legend=TRUE,legend.signif=2,map.cex=1.3,par=list(mfrow=c(1,1),oma=c(0,0,1,0)),year=lastyear,posProb=TRUE,scaleMap=FALSE)
     title(lt,outer=TRUE)
@@ -446,7 +448,7 @@ for (NR_RUNS in selreg){
   
   allout.df = do.call(rbind,allout)
   
-  write.csv(allout.df,file=paste0("../output/",NR_RUNS,"/litterEstimates.csv"),row.names=FALSE)
+  write.csv(allout.df,file=paste0("./output/",NR_RUNS,"/litterEstimates.csv"),row.names=FALSE)
   
   
   ############################################################
@@ -475,7 +477,7 @@ for (NR_RUNS in selreg){
   }
   
   ## Output summaries
-  sink(paste0("../output/",NR_RUNS,"/trend15summaries.txt"))
+  sink(paste0("./output/",NR_RUNS,"/trend15summaries.txt"))
   cat("============ Trend models (2015 onwards)  ===============\n")
   cat("============ Mass  ===============\n")
   lapply(trend15models,function(x) { summary(x$pModels[[1]])  } )
