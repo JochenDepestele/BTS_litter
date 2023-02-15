@@ -191,8 +191,25 @@ readlitter <- function (file = "IBTS.csv", na.strings = c("-9", "-9.0", "-9.00",
 
     d[[1]]$TimeShotHour = 12
     
+    ## check Litter data on inconsistency
+    temp<-d[[2]]%>%group_by(haul.id)%>%summarize(LT_Items)
+    ll<-mean(temp$LT_Items, na.rm=T)-3*sd(temp$LT_Items, na.rm=T)
+    ul<-mean(temp$LT_Items, na.rm=T)+3*sd(temp$LT_Items, na.rm=T)
+    
+    outliers<-temp$haul.id[which(temp$LT_Items>ul)]
+    
+    #incorrect reported
+    excl<-d[[2]] %>% filter((LT_Items ==0 & PARAM!="LT-TOT")) %>% pull(haul.id)
+    
+    
+    
+    d[[2]]%>%filter(!(haul.id%in%outliers)) %>% filter(!(haul.id%in%excl)) -> d[[2]]
+    d[[1]]%>%filter(!(haul.id%in%outliers)) %>% filter(!(haul.id%in%excl)) -> d[[1]]
+
+    
+    
     ## check distance
-    r_earth<-6371 #km
+    r_earth<-6378.135 #km
     L_s<-d[[1]]$ShootLat
     l_s<-d[[1]]$ShootLong
     L_h<-d[[1]]$HaulLat
