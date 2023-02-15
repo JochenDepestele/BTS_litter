@@ -1,7 +1,8 @@
-###################################################################
+#################################################################################
 ## Helper functions for handling DATRAS litter exchange data
-## Author: Casper W. Berg, DTU Aqua.
-###################################################################
+## Author: Casper W. Berg, DTU Aqua 
+## Modifications for BTS analysis: David Vanavermaete and Jochen Depestele (ILVO)
+#################################################################################
 
 TVS2TVL <- function(){
     ## Swept area (m^2) for 30 min hauls
@@ -10,6 +11,8 @@ TVS2TVL <- function(){
 }
 
 readlitter <- function (file = "IBTS.csv", na.strings = c("-9", "-9.0", "-9.00", "-9.0000"), type="Weight"){
+  
+  library(dplyr)
 
     getExt<-function(x) { l=nchar(x); substr(x,l-3,l) }
     if(getExt(file)==".zip"){

@@ -16,12 +16,6 @@ library(surveyIndex)
 library(marmap)
 library(plot.matrix)
 library(xtable)
-<<<<<<< HEAD
-library(dplyr)
-=======
-library(maptools)
-library(sp)
->>>>>>> 5d51e9a3db78dd2a7186ab34eb251fec9248358d
 
 source("./src/readLitter.R")
 
