@@ -81,6 +81,8 @@ readlitter <- function (file = "IBTS.csv", na.strings = c("-9", "-9.0", "-9.00",
         
     if(type=="Numbers"){
         badhauls = unique(d$LT$haul.id[ is.na(d$LT$LT_Items) ] )
+        badhauls <- c(badhauls, # Three hauls (1 haul in 2017, 2018 and 2019) have unrealistic high number of litter items compared to their weight in grammes. They are excluded
+                      d$LT$haul.id[ d$LT$LT_Weight<1000 & d$LT$UnitWgt=="g/haul" & d$LT$LT_Items>100 ])
         if(length(badhauls)>0){ 
             cat("Dropping ", length(badhauls), " hauls with only weight info\n")
             d[[2]] = subset(d[[2]], !haul.id %in% badhauls)
@@ -96,7 +98,12 @@ readlitter <- function (file = "IBTS.csv", na.strings = c("-9", "-9.0", "-9.00",
     d$LT$UnitWgt[ zerohauls ] = "kg/haul"
         
     if(type=="Weight"){
-        badhauls = unique(d$LT$haul.id[ is.na(d$LT$UnitWgt) | !d$LT$UnitWgt%in%c("g/haul","kg/haul")])
+      d$LT$LT_Weight[ !is.na(d$LT$LT_Weight) & d$LT$LT_Weight>100 & d$LT$UnitWgt=="kg/haul" & d$LT$Ship=="11BE" & d$LT$LT_Items==1] # 4 hauls in DATRAS with incorrect weight (Heleen Raat - Belgian BTS coordination, pers comm 14 Feb 2023)
+      d$LT$UnitWgt[ !is.na(d$LT$LT_Weight) & d$LT$LT_Weight>100 & d$LT$UnitWgt=="kg/haul" & d$LT$Ship=="11BE" & d$LT$LT_Items==1] <- "g/haul"
+      d$LT$LT_Weight[ !is.na(d$LT$LT_Weight) & d$LT$LT_Weight>100 & d$LT$UnitWgt=="kg/haul" & d$LT$LT_Items==1]
+      badhauls = unique(d$LT$haul.id[ is.na(d$LT$UnitWgt) | !d$LT$UnitWgt%in%c("g/haul","kg/haul")])
+      badhauls = c(badhauls,
+                   d$LT$haul.id[ !is.na(d$LT$LT_Weight) & d$LT$LT_Weight>100 & d$LT$UnitWgt=="kg/haul" & d$LT$LT_Items==1])
         if(length(badhauls)>0){ 
             cat("Dropping ", length(badhauls), " hauls with no or bad weight unit info\n")
             d[[2]] = subset(d[[2]], !haul.id %in% badhauls)

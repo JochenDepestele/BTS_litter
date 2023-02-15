@@ -23,6 +23,7 @@ source("./src/readLitter.R")
 
 selreg <- c("NWW","NS")
 
+
 for (NR_RUNS in selreg){
   litterTypes = c("Glass","Metal","Natural","Other","Plastic","Rubber")
   print(NR_RUNS)
@@ -69,10 +70,10 @@ for (NR_RUNS in selreg){
 
   ## Get prediction grid
   bgrid <- getBathyGrid(drd,minDepth=1,maxDepth=1000,maxDist=Inf,resolution=3,shapefile="./shapefiles/ICES/ICES_areas.shp",select="ICES_SUB")
-  # bgrid = subset(bgrid, ICES_SUB %in% c("VIIa","VIIf","VIIg"))
+  # bgrid = subset(bgrid, ICES_SUB %in% c("VIIa","VIIf","VIIg")) # resolution is in minutes, see marmap::getNOAA.bathy
 
   if(NR_RUNS=="NS"){
-    whichregion <- c("IVa","IVb","IVc")
+    whichregion <- c("IVa","IVb","IVc","VIId")
   }else{whichregion <- c("VIIa","VIIf","VIIg")}
 
   bgrid = subset(bgrid, ICES_SUB %in% whichregion)
@@ -120,7 +121,6 @@ for (NR_RUNS in selreg){
   fm3 = paste0("ctime + s(lon,lat, bs='ds',m=c(1,0.5),k=128) + offset(log(EFFORT))")
 
   formulas = list(fm,fm2,fm3)
-
 
   ages = 1
 
@@ -225,6 +225,14 @@ for (NR_RUNS in selreg){
   lapply(models3,function(x) { summary(x$pModels[[1]])  } )
   sink()
 
+  ## Export model summaries using capture.output, because cat did not seem to work...
+  capture.output( lapply(models,function(x) { summary(x$pModels[[1]])  } ), 
+                  file=paste0("./output/",NR_RUNS,"/summaries_captured.txt"), append=TRUE)
+  capture.output( lapply(models2,function(x) { summary(x$pModels[[1]])  } ), 
+                  file=paste0("./output/",NR_RUNS,"/summaries_captured.txt"), append=TRUE)
+  capture.output( lapply(models3,function(x) { summary(x$pModels[[1]])  } ), 
+                  file=paste0("./output/",NR_RUNS,"/summaries_captured.txt"), append=TRUE)
+
 
   ################################
   ## Calculate indices by EEZ
@@ -268,7 +276,7 @@ for (NR_RUNS in selreg){
 
   
   #####################################
-  ### Numbers insted of mass
+  ### Numbers instead of mass
   #####################################
   
   d = readlitter(datafile,type="Numbers")
@@ -337,6 +345,15 @@ for (NR_RUNS in selreg){
   cat("=====================\n")
   lapply(nmodels3,function(x) { summary(x$pModels[[1]])  } )
   sink()
+  
+  ## Export model summaries using capture.output, because cat did not seem to work...
+  capture.output( lapply(nmodels,function(x) { summary(x$pModels[[1]])  } ), 
+                  file=paste0("./output/",NR_RUNS,"/summaries_numbers_captured.txt"), append=TRUE)
+  capture.output( lapply(nmodels2,function(x) { summary(x$pModels[[1]])  } ), 
+                  file=paste0("./output/",NR_RUNS,"/summaries_numbers_captured.txt"), append=TRUE)
+  capture.output( lapply(nmodels3,function(x) { summary(x$pModels[[1]])  } ), 
+                  file=paste0("./output/",NR_RUNS,"/summaries_numbers_captured.txt"), append=TRUE)
+  
   
   ##########################################
   ## Calculate indices by EEZ (numbers)
@@ -429,6 +446,15 @@ for (NR_RUNS in selreg){
     dev.off()
     
   }
+  
+  ## Export model summaries using capture.output, because cat did not seem to work...
+  capture.output( lapply(pmodels,function(x) { summary(x$pModels[[1]])  } ), 
+                  file=paste0("./output/",NR_RUNS,"/summaries_prob_captured.txt"), append=TRUE)
+  capture.output( lapply(pmodels2,function(x) { summary(x$pModels[[1]])  } ), 
+                  file=paste0("./output/",NR_RUNS,"/summaries_prob_captured.txt"), append=TRUE)
+  capture.output( lapply(pmodels3,function(x) { summary(x$pModels[[1]])  } ), 
+                  file=paste0("./output/",NR_RUNS,"/summaries_prob_captured.txt"), append=TRUE)
+  
   
   ##########################
   ## CSV output
