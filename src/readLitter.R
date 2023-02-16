@@ -193,21 +193,23 @@ readlitter <- function (file = "IBTS.csv", na.strings = c("-9", "-9.0", "-9.00",
     d[[1]]$Year = factor(d[[1]]$Year)
 
     d[[1]]$TimeShotHour = 12
-    
-    ## check Litter data on inconsistency
-    temp<-d[[2]]%>%group_by(haul.id)%>%summarize(LT_Items)
-    ll<-mean(temp$LT_Items, na.rm=T)-3*sd(temp$LT_Items, na.rm=T)
-    ul<-mean(temp$LT_Items, na.rm=T)+3*sd(temp$LT_Items, na.rm=T)
-    
-    outliers<-temp$haul.id[which(temp$LT_Items>ul)]
+
+    # in case we'd like to remove outliers:    
+    # ## check Litter data on inconsistency
+    # temp<-d[[2]]%>%group_by(haul.id)%>%summarize(LT_Items)
+    # ll<-mean(temp$LT_Items, na.rm=T)-3*sd(temp$LT_Items, na.rm=T)
+    # ul<-mean(temp$LT_Items, na.rm=T)+3*sd(temp$LT_Items, na.rm=T)
+    # 
+    # outliers<-temp$haul.id[which(temp$LT_Items>ul)]
+    # d[[2]]%>%filter(!(haul.id%in%outliers)) -> d[[2]]
+    # d[[1]]%>%filter(!(haul.id%in%outliers))  -> d[[1]]
     
     #incorrect reported
     excl<-d[[2]] %>% filter((LT_Items ==0 & PARAM!="LT-TOT")) %>% pull(haul.id)
     
-    
-    
-    d[[2]]%>%filter(!(haul.id%in%outliers)) %>% filter(!(haul.id%in%excl)) -> d[[2]]
-    d[[1]]%>%filter(!(haul.id%in%outliers)) %>% filter(!(haul.id%in%excl)) -> d[[1]]
+
+    d[[2]] %>% filter(!(haul.id%in%excl)) -> d[[2]]
+    d[[1]] %>% filter(!(haul.id%in%excl)) -> d[[1]]
 
     
     
@@ -234,10 +236,10 @@ readlitter <- function (file = "IBTS.csv", na.strings = c("-9", "-9.0", "-9.00",
     TVS_TVL = TVS2TVL()
     
     #isolate the beam length
-    beam_distance<-as.numeric(gsub(".*?([0-9]+).*", "\\1", as.character(d[[1]]$Gear)))
+    beam_width<-as.numeric(gsub(".*?([0-9]+).*", "\\1", as.character(d[[1]]$Gear)))
     
     #Surface = distance of haul times beam length
-    d[[1]]$EFFORT = d[[1]]$Distance_Used * beam_distance 
+    d[[1]]$EFFORT = d[[1]]$Distance_Used * beam_width
     
     #d[[1]]$EFFORT = TVS_TVL[2]/30 * d[[1]]$HaulDur
     #d[[1]]$EFFORT[ d[[1]]$Gear == "TVS" ] = TVS_TVL[4]/30 * d[[1]]$HaulDur[ d[[1]]$Gear == "TVS" ]

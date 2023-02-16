@@ -16,6 +16,9 @@ library(surveyIndex)
 library(marmap)
 library(plot.matrix)
 library(xtable)
+library(sf)
+library(raster)
+library(maptools)
 
 source("./src/readLitter.R")
 
@@ -36,8 +39,10 @@ for (NR_RUNS in selreg){
   d = subset(d,HaulDur>0 & HaulVal!="I")
   d = subset(d,!is.na(d$lon) & !is.na(d$lat))
   
-  d <- d[which(d$Year %in% c(2015:2021)),]
-  
+  if(NR_RUNS=="NS"){
+    d <- d[which(d$Year %in% c(2019:2021)),] # Years should be starting from 2017 once the error in the weight estimates of 2018 are corrected.
+  }else{d <- d[which(d$Year %in% c(2016:2021)),]}
+
   xtabs(~Year,d)
   xtabs(~Year+Quarter,d)
   d$Year = factor(d$Year)
@@ -63,19 +68,21 @@ for (NR_RUNS in selreg){
     dd
   }
 
-
   drd = df2dr(d)
 
   ## Get prediction grid
-  bgrid <- getBathyGrid(drd,minDepth=1,maxDepth=1000,maxDist=Inf,resolution=3,shapefile="./shapefiles/ICES/ICES_areas.shp",select="ICES_SUB")
+  # bgrid <- getBathyGrid(drd,minDepth=1,maxDepth=1000,maxDist=Inf,resolution=3,shapefile="./shapefiles/ICES/ICES_areas.shp",select="ICES_SUB")
   # bgrid = subset(bgrid, ICES_SUB %in% c("VIIa","VIIf","VIIg")) # resolution is in minutes, see marmap::getNOAA.bathy
-
+  bgrid <- read.csv2(paste0("./data/bgrid.csv"))
+  bgrid <- bgrid[,c("lon","lat","Depth","ICES_SUB")]
+  
   if(NR_RUNS=="NS"){
     whichregion <- c("IVa","IVb","IVc","VIId")
   }else{whichregion <- c("VIIa","VIIf","VIIg")}
 
   bgrid = subset(bgrid, ICES_SUB %in% whichregion)
-
+  # bgrid = subset(bgrid, subdivision %in% whichregion)
+  
   tmp = addSpatialData(df2dr(bgrid),shape="./shapefiles/EEZshape/EMODnet_HA_OtherManagementAreas_EEZ_v11_20210506.shp")
   bgrid = tmp[[2]]
   bgrid$Territory = factor(bgrid$Territory) ## drop empty factor levels
@@ -88,6 +95,7 @@ for (NR_RUNS in selreg){
   maps::map("worldHires", fill = TRUE, plot = TRUE,
             add = TRUE, col = grey(0.5))
   points(d$lon,d$lat,col=2,pch=".",cex=3)
+  Sys.sleep(10) # Wait 10 seconds
   dev.off()
 
   ## Plot EEZ map
@@ -96,8 +104,8 @@ for (NR_RUNS in selreg){
   maps::map("worldHires", fill = TRUE, plot = TRUE,
             add = TRUE, col = grey(0.9))
   legend("bottomright",legend=levels(bgrid$Territory),col=1:nlevels(bgrid$Territory),pch=15,bg="white",cex=1.3)
+  Sys.sleep(10) # Wait 10 seconds
   dev.off()
-
 
   ### Standardized effort: 1 km^2 (1e6 m^2).
   ## Index is sum of grid points, so divide by number of grid points such that the index is
@@ -152,12 +160,16 @@ for (NR_RUNS in selreg){
   for(i in 1:length(models)){
     surveyIndex:::plot.SIlist(list(models[[i]],models2[[i]],models3[[i]]),main=names(models)[i])
   }
+  Sys.sleep(10) # Wait 10 seconds
   dev.off()
+  
 
   ### Plotting
   maxBubble = 8
 
+  
   for(lt in litterTypesExt){
+    start.time <- Sys.time()
     png(paste0("./output/",NR_RUNS,"/",lt,"%03d.png"),width=1200,height=800)
 
     ## Bubble plots - one per year
@@ -171,6 +183,7 @@ for (NR_RUNS in selreg){
       mybubblePlot(tmp,response=lt,scale=myscale,rim=TRUE,xlim=xlims,ylim=ylims,axes=FALSE)
       box()
       title(yy)
+      Sys.sleep(5) # Wait 5 seconds
     }
     title(lt,outer=TRUE,line=0,cex.main=2)
 
@@ -190,10 +203,14 @@ for (NR_RUNS in selreg){
 
     ## Fitted total abundance
     surveyIndex:::plot.SIlist( list(models[[lt]]) ,main=paste(lt,"(kg / km^2)"))
-
+    end.time <- Sys.time()
+    time.taken <- end.time - start.time
+    paste("System time for plotting bubbleplots of: ",lt,"\nis = ",time.taken, "seconds")
+    
+    Sys.sleep(10) # Wait 10 seconds
     dev.off()
   }
-
+  
 
   ## Plot them all
   png(paste0("./output/",NR_RUNS,"/allidx.png"),width=1200,height=800,pointsize=24)
@@ -203,13 +220,10 @@ for (NR_RUNS in selreg){
   par(mfrow=c(1,1),mar=c(4,4,3,3))
   for(i in 1:length(allidxs)){
     ys = rownames(allidxs[[i]])
-
     if(i==1) plot(ys,allidxs[[i]],ylim=c(0,maxY),type="b",lwd=2,ylab="Index ( kg / km^2)") else lines(ys,allidxs[[i]],type="b",col=i,lwd=2)
-
   }
-
   legend("topright",col=1:length(allidxs),legend=names(allidxs),pch=1,lty=1,lwd=2)
-
+  Sys.sleep(10) # Wait 10 seconds
   dev.off()
 
 
@@ -230,7 +244,11 @@ for (NR_RUNS in selreg){
                   file=paste0("./output/",NR_RUNS,"/summaries_captured.txt"), append=TRUE)
   capture.output( lapply(models3,function(x) { summary(x$pModels[[1]])  } ), 
                   file=paste0("./output/",NR_RUNS,"/summaries_captured.txt"), append=TRUE)
-
+  
+  saveRDS(models,file=paste0("./output/",NR_RUNS,"/models.RDS"))
+  saveRDS(models2,file=paste0("./output/",NR_RUNS,"/models2.RDS"))
+  saveRDS(models3,file=paste0("./output/",NR_RUNS,"/models3.RDS"))
+  
 
   ################################
   ## Calculate indices by EEZ
@@ -270,6 +288,7 @@ for (NR_RUNS in selreg){
 
   col <- colorRampPalette(c("white","yellow","red"))
   plot(EEZmatCV,col=col,fmt.cell="%.2f",fmt.key="%.2f",las=1,xlab="",ylab="",main=paste("Litter density uncertainty (CV) by EEZ",tail(levels(d$Year),1)))
+  Sys.sleep(10) # Wait 10 seconds
   dev.off()
 
   
@@ -281,7 +300,11 @@ for (NR_RUNS in selreg){
   ## Note, different number of hauls when considering numbers!
   d = subset(d,HaulDur>0 & HaulVal!="I")
   d = subset(d,!is.na(d$lon) & !is.na(d$lat))
-  d <- d[which(d$Year %in% c(2015:2021)),]
+  
+  if(NR_RUNS=="NS"){
+    d <- d[which(d$Year %in% c(2017:2021)),]
+  }else{d <- d[which(d$Year %in% c(2016:2021)),]}
+  
   d$Year = factor(d$Year)
   drd = df2dr(d)
   
@@ -291,8 +314,7 @@ for (NR_RUNS in selreg){
   makeTable( xtabs(~Gear+Country,d), fil=paste0("./report/",NR_RUNS,"/gctab-n.tex"),cap="Numbers: Number of hauls by gear and country")
   makeTable( xtabs(~Country+Quarter,d), fil=paste0("./report/",NR_RUNS,"/cqtab-n.tex"),cap="Numbers: Number of hauls by country and quarter")
   
-  
-  
+
   StdEffort = 1e6 / nrow(bgrid)  ## Numbers pr km^2
   
   nmodels = list()
@@ -321,6 +343,7 @@ for (NR_RUNS in selreg){
   for(i in 1:length(models)){
     surveyIndex:::plot.SIlist(list(nmodels[[i]],nmodels2[[i]],nmodels3[[i]]),main=names(models)[i])
   }
+  Sys.sleep(10) # Wait 10 seconds
   dev.off()
   
   ## Maps
@@ -329,6 +352,7 @@ for (NR_RUNS in selreg){
     
     surveyIdxPlots(nmodels[[lt]],drd,myids=NULL,predD=bgrid,select="map",colors=rev(heat.colors(7)),legend=TRUE,legend.signif=2,map.cex=1.3,par=list(mfrow=c(1,1)),main=lt)
     
+    Sys.sleep(10) # Wait 10 seconds
     dev.off()
   }
   
@@ -351,6 +375,10 @@ for (NR_RUNS in selreg){
                   file=paste0("./output/",NR_RUNS,"/summaries_numbers_captured.txt"), append=TRUE)
   capture.output( lapply(nmodels3,function(x) { summary(x$pModels[[1]])  } ), 
                   file=paste0("./output/",NR_RUNS,"/summaries_numbers_captured.txt"), append=TRUE)
+  
+  saveRDS(nmodels,file=paste0("./output/",NR_RUNS,"/nmodels.RDS"))
+  saveRDS(nmodels2,file=paste0("./output/",NR_RUNS,"/nmodels2.RDS"))
+  saveRDS(nmodels3,file=paste0("./output/",NR_RUNS,"/nmodels3.RDS"))
   
   
   ##########################################
@@ -391,6 +419,7 @@ for (NR_RUNS in selreg){
   
   col <- colorRampPalette(c("white","yellow","red"))
   plot(EEZmatCV,col=col,fmt.cell="%.2f",fmt.key="%.2f",las=1,xlab="",ylab="",main=paste("Litter density uncertainty (CV) by EEZ (numbers)",tail(levels(d$Year),1)))
+  Sys.sleep(10) # Wait 10 seconds
   dev.off()
   
   
@@ -428,6 +457,7 @@ for (NR_RUNS in selreg){
   for(i in 1:length(pmodels)){
     surveyIndex:::plot.SIlist(list(pmodels[[i]],pmodels2[[i]],pmodels3[[i]]),main=names(pmodels)[i],posProb=TRUE)
   }
+  Sys.sleep(10) # Wait 10 seconds
   dev.off()
   
   ## Fitted maps
@@ -441,6 +471,7 @@ for (NR_RUNS in selreg){
     
     surveyIdxPlots(pmodels[[lt]],drd,myids=NULL,predD=bgrid,select="absolutemap",colors=probcols,legend=TRUE,legend.signif=2,map.cex=1.3,par=list(mfrow=c(1,1),oma=c(0,0,1,0)),year=lastyear,posProb=TRUE,scaleMap=FALSE)
     title(lt,outer=TRUE)
+    Sys.sleep(10) # Wait 10 seconds
     dev.off()
     
   }
@@ -453,6 +484,10 @@ for (NR_RUNS in selreg){
   capture.output( lapply(pmodels3,function(x) { summary(x$pModels[[1]])  } ), 
                   file=paste0("./output/",NR_RUNS,"/summaries_prob_captured.txt"), append=TRUE)
   
+  
+  saveRDS(pmodels,file=paste0("./output/",NR_RUNS,"/pmodels.RDS"))
+  saveRDS(pmodels2,file=paste0("./output/",NR_RUNS,"/pmodels2.RDS"))
+  saveRDS(pmodels3,file=paste0("./output/",NR_RUNS,"/pmodels3.RDS"))
   
   ##########################
   ## CSV output

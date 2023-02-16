@@ -1,0 +1,630 @@
+$Glass
+
+Family: Tweedie(p=1.594) 
+Link function: log 
+
+Formula:
+A1 ~ s(ctime, k = 7, bs = "ds", m = c(1, 0)) + s(lon, lat, bs = "ds", 
+    m = c(1, 0.5), k = 128) + offset(log(EFFORT))
+
+Parametric coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -14.9444     0.1621  -92.19   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Approximate significance of smooth terms:
+              edf Ref.df     F p-value    
+s(ctime)    2.055      6 0.723  0.0677 .  
+s(lon,lat) 30.371    127 1.061  <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+R-sq.(adj) =  0.00773   Deviance explained = 38.9%
+-ML = 377.42  Scale est. = 9.4198    n = 3116
+
+$Metal
+
+Family: Tweedie(p=1.711) 
+Link function: log 
+
+Formula:
+A1 ~ s(ctime, k = 7, bs = "ds", m = c(1, 0)) + s(lon, lat, bs = "ds", 
+    m = c(1, 0.5), k = 128) + offset(log(EFFORT))
+
+Parametric coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -15.2568     0.1135  -134.5   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Approximate significance of smooth terms:
+              edf Ref.df     F p-value    
+s(ctime)    0.429      6 0.100   0.214    
+s(lon,lat) 51.894    127 1.413  <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+R-sq.(adj) =  0.00694   Deviance explained = 30.3%
+-ML = 346.98  Scale est. = 8.1019    n = 3116
+
+$Natural
+
+Family: Tweedie(p=1.688) 
+Link function: log 
+
+Formula:
+A1 ~ s(ctime, k = 7, bs = "ds", m = c(1, 0)) + s(lon, lat, bs = "ds", 
+    m = c(1, 0.5), k = 128) + offset(log(EFFORT))
+
+Parametric coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -13.81009    0.09954  -138.7   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Approximate significance of smooth terms:
+                 edf Ref.df     F p-value    
+s(ctime)    0.001124      6 0.000   0.849    
+s(lon,lat) 43.542678    127 2.522  <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+R-sq.(adj) =  0.00319   Deviance explained = 33.2%
+-ML = 735.18  Scale est. = 7.9481    n = 3116
+
+$Other
+
+Family: Tweedie(p=1.656) 
+Link function: log 
+
+Formula:
+A1 ~ s(ctime, k = 7, bs = "ds", m = c(1, 0)) + s(lon, lat, bs = "ds", 
+    m = c(1, 0.5), k = 128) + offset(log(EFFORT))
+
+Parametric coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -14.01759    0.09365  -149.7   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Approximate significance of smooth terms:
+              edf Ref.df      F p-value    
+s(ctime)    5.575      6 14.653  <2e-16 ***
+s(lon,lat) 56.853    127  2.751  <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+R-sq.(adj) =  0.0108   Deviance explained = 46.4%
+-ML = 745.97  Scale est. = 5.9051    n = 3116
+
+$Plastic
+
+Family: Tweedie(p=1.789) 
+Link function: log 
+
+Formula:
+A1 ~ s(ctime, k = 7, bs = "ds", m = c(1, 0)) + s(lon, lat, bs = "ds", 
+    m = c(1, 0.5), k = 128) + offset(log(EFFORT))
+
+Parametric coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -12.37967    0.03625  -341.5   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Approximate significance of smooth terms:
+              edf Ref.df      F p-value    
+s(ctime)    5.703      6 24.683  <2e-16 ***
+s(lon,lat) 91.539    127  7.619  <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+R-sq.(adj) =  0.00564   Deviance explained = 31.7%
+-ML = -802.69  Scale est. = 2.332     n = 3116
+
+$Rubber
+
+Family: Tweedie(p=1.667) 
+Link function: log 
+
+Formula:
+A1 ~ s(ctime, k = 7, bs = "ds", m = c(1, 0)) + s(lon, lat, bs = "ds", 
+    m = c(1, 0.5), k = 128) + offset(log(EFFORT))
+
+Parametric coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -13.67195    0.08432  -162.1   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Approximate significance of smooth terms:
+              edf Ref.df      F p-value    
+s(ctime)    5.098      6 10.706  <2e-16 ***
+s(lon,lat) 54.780    127  2.698  <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+R-sq.(adj) =  0.0172   Deviance explained = 40.4%
+-ML = 806.02  Scale est. = 5.6938    n = 3116
+
+$SUP
+
+Family: Tweedie(p=1.726) 
+Link function: log 
+
+Formula:
+A1 ~ s(ctime, k = 7, bs = "ds", m = c(1, 0)) + s(lon, lat, bs = "ds", 
+    m = c(1, 0.5), k = 128) + offset(log(EFFORT))
+
+Parametric coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -13.70214    0.04471  -306.5   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Approximate significance of smooth terms:
+              edf Ref.df      F p-value    
+s(ctime)    5.188      6 12.060  <2e-16 ***
+s(lon,lat) 77.776    127  5.667  <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+R-sq.(adj) =  -0.00578   Deviance explained = 32.2%
+-ML = -651.03  Scale est. = 2.073     n = 3116
+
+$Fishing.related
+
+Family: Tweedie(p=1.779) 
+Link function: log 
+
+Formula:
+A1 ~ s(ctime, k = 7, bs = "ds", m = c(1, 0)) + s(lon, lat, bs = "ds", 
+    m = c(1, 0.5), k = 128) + offset(log(EFFORT))
+
+Parametric coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -13.15890    0.04619  -284.9   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Approximate significance of smooth terms:
+              edf Ref.df      F p-value    
+s(ctime)    5.639      6 15.769  <2e-16 ***
+s(lon,lat) 80.801    127  5.688  <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+R-sq.(adj) =  0.045   Deviance explained = 24.1%
+-ML = -673.38  Scale est. = 3.0466    n = 3116
+
+$Glass
+
+Family: Tweedie(p=1.585) 
+Link function: log 
+
+Formula:
+A1 ~ Year + s(lon, lat, bs = "ds", m = c(1, 0.5), k = 128) + 
+    offset(log(EFFORT))
+
+Parametric coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -16.7395     0.7205 -23.234  < 2e-16 ***
+Year2016      1.8470     0.8412   2.196 0.028185 *  
+Year2017      1.4762     0.8276   1.784 0.074568 .  
+Year2018      2.7249     0.7761   3.511 0.000453 ***
+Year2019      1.7471     0.8061   2.167 0.030285 *  
+Year2020      2.2689     0.7923   2.864 0.004215 ** 
+Year2021      1.4549     0.8045   1.808 0.070635 .  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Approximate significance of smooth terms:
+           edf Ref.df     F p-value    
+s(lon,lat)  29    127 0.954  <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+R-sq.(adj) =  0.0131   Deviance explained = 39.8%
+-ML = 371.97  Scale est. = 8.7294    n = 3116
+
+$Metal
+
+Family: Tweedie(p=1.711) 
+Link function: log 
+
+Formula:
+A1 ~ Year + s(lon, lat, bs = "ds", m = c(1, 0.5), k = 128) + 
+    offset(log(EFFORT))
+
+Parametric coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -15.60012    0.40476 -38.541   <2e-16 ***
+Year2016      0.33234    0.52890   0.628    0.530    
+Year2017     -0.08454    0.51464  -0.164    0.870    
+Year2018      0.25485    0.49699   0.513    0.608    
+Year2019      0.18322    0.49872   0.367    0.713    
+Year2020      0.78462    0.48157   1.629    0.103    
+Year2021      0.63814    0.47580   1.341    0.180    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Approximate significance of smooth terms:
+             edf Ref.df     F p-value    
+s(lon,lat) 49.98    127 1.285  <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+R-sq.(adj) =  0.00433   Deviance explained = 29.9%
+-ML = 345.29  Scale est. = 8.1376    n = 3116
+
+$Natural
+
+Family: Tweedie(p=1.686) 
+Link function: log 
+
+Formula:
+A1 ~ Year + s(lon, lat, bs = "ds", m = c(1, 0.5), k = 128) + 
+    offset(log(EFFORT))
+
+Parametric coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -14.1191     0.3271 -43.166   <2e-16 ***
+Year2016      0.8816     0.4146   2.127   0.0335 *  
+Year2017     -0.2607     0.4110  -0.634   0.5260    
+Year2018      0.3176     0.3911   0.812   0.4168    
+Year2019      0.4557     0.3897   1.170   0.2423    
+Year2020      0.2115     0.3941   0.537   0.5916    
+Year2021      0.3358     0.3875   0.867   0.3863    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Approximate significance of smooth terms:
+             edf Ref.df     F p-value    
+s(lon,lat) 43.39    127 2.487  <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+R-sq.(adj) =  0.00335   Deviance explained = 33.9%
+-ML = 731.73  Scale est. = 7.7625    n = 3116
+
+$Other
+
+Family: Tweedie(p=1.655) 
+Link function: log 
+
+Formula:
+A1 ~ Year + s(lon, lat, bs = "ds", m = c(1, 0.5), k = 128) + 
+    offset(log(EFFORT))
+
+Parametric coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -16.8718     0.4849 -34.796  < 2e-16 ***
+Year2016      3.5996     0.5375   6.697 2.52e-11 ***
+Year2017      3.1797     0.5327   5.969 2.65e-09 ***
+Year2018      4.1677     0.5147   8.097 8.02e-16 ***
+Year2019      2.5211     0.5380   4.686 2.91e-06 ***
+Year2020      2.8714     0.5286   5.432 6.01e-08 ***
+Year2021      2.5853     0.5288   4.889 1.07e-06 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Approximate significance of smooth terms:
+             edf Ref.df     F p-value    
+s(lon,lat) 57.01    127 2.774  <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+R-sq.(adj) =  0.0113   Deviance explained = 46.4%
+-ML = 735.56  Scale est. = 5.8329    n = 3116
+
+$Plastic
+
+Family: Tweedie(p=1.789) 
+Link function: log 
+
+Formula:
+A1 ~ Year + s(lon, lat, bs = "ds", m = c(1, 0.5), k = 128) + 
+    offset(log(EFFORT))
+
+Parametric coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -13.1972     0.1367 -96.540  < 2e-16 ***
+Year2016      1.2203     0.1732   7.046 2.28e-12 ***
+Year2017      0.7096     0.1676   4.233 2.38e-05 ***
+Year2018      1.6676     0.1604  10.395  < 2e-16 ***
+Year2019      0.7329     0.1650   4.442 9.22e-06 ***
+Year2020      0.7308     0.1649   4.433 9.65e-06 ***
+Year2021      0.5386     0.1627   3.309 0.000946 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Approximate significance of smooth terms:
+             edf Ref.df     F p-value    
+s(lon,lat) 91.72    127 7.654  <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+R-sq.(adj) =  0.00535   Deviance explained = 31.7%
+-ML = -814.58  Scale est. = 2.3253    n = 3116
+
+$Rubber
+
+Family: Tweedie(p=1.666) 
+Link function: log 
+
+Formula:
+A1 ~ Year + s(lon, lat, bs = "ds", m = c(1, 0.5), k = 128) + 
+    offset(log(EFFORT))
+
+Parametric coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -15.0275     0.3461 -43.424  < 2e-16 ***
+Year2016      1.2792     0.4282   2.988 0.002835 ** 
+Year2017      1.6245     0.4011   4.050 5.24e-05 ***
+Year2018      2.6363     0.3814   6.911 5.82e-12 ***
+Year2019      0.9547     0.4064   2.349 0.018887 *  
+Year2020      1.4692     0.3948   3.721 0.000202 ***
+Year2021      0.9900     0.3969   2.494 0.012668 *  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Approximate significance of smooth terms:
+             edf Ref.df     F p-value    
+s(lon,lat) 54.18    127 2.619  <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+R-sq.(adj) =  0.019   Deviance explained = 40.5%
+-ML =  796.3  Scale est. = 5.5967    n = 3116
+
+$SUP
+
+Family: Tweedie(p=1.725) 
+Link function: log 
+
+Formula:
+A1 ~ Year + s(lon, lat, bs = "ds", m = c(1, 0.5), k = 128) + 
+    offset(log(EFFORT))
+
+Parametric coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -14.1540     0.1626 -87.070  < 2e-16 ***
+Year2016      0.8622     0.2062   4.181 2.98e-05 ***
+Year2017      0.5283     0.1987   2.659  0.00788 ** 
+Year2018      1.1884     0.1907   6.232 5.25e-10 ***
+Year2019      0.4215     0.1970   2.140  0.03246 *  
+Year2020      0.2482     0.1989   1.248  0.21217    
+Year2021      0.0390     0.1960   0.199  0.84230    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Approximate significance of smooth terms:
+             edf Ref.df     F p-value    
+s(lon,lat) 78.12    127 5.625  <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+R-sq.(adj) =  -0.00497   Deviance explained = 32.3%
+-ML = -660.27  Scale est. = 2.0583    n = 3116
+
+$Fishing.related
+
+Family: Tweedie(p=1.779) 
+Link function: log 
+
+Formula:
+A1 ~ Year + s(lon, lat, bs = "ds", m = c(1, 0.5), k = 128) + 
+    offset(log(EFFORT))
+
+Parametric coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -14.4728     0.1815 -79.751  < 2e-16 ***
+Year2016      2.0025     0.2230   8.981  < 2e-16 ***
+Year2017      1.2382     0.2188   5.659 1.67e-08 ***
+Year2018      1.4789     0.2139   6.915 5.69e-12 ***
+Year2019      1.6119     0.2127   7.577 4.68e-14 ***
+Year2020      1.5603     0.2121   7.357 2.41e-13 ***
+Year2021      0.9810     0.2124   4.618 4.04e-06 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Approximate significance of smooth terms:
+             edf Ref.df     F p-value    
+s(lon,lat) 81.29    127 5.833  <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+R-sq.(adj) =  0.0438   Deviance explained = 24.2%
+-ML = -684.98  Scale est. = 3.0317    n = 3116
+
+$Glass
+
+Family: Tweedie(p=1.598) 
+Link function: log 
+
+Formula:
+A1 ~ ctime + s(lon, lat, bs = "ds", m = c(1, 0.5), k = 128) + 
+    offset(log(EFFORT))
+
+Parametric coefficients:
+              Estimate Std. Error t value Pr(>|t|)
+(Intercept) -150.93847  163.03205  -0.926    0.355
+ctime          0.06735    0.08074   0.834    0.404
+
+Approximate significance of smooth terms:
+             edf Ref.df     F p-value    
+s(lon,lat) 30.86    127 1.137  <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+R-sq.(adj) =  0.00364   Deviance explained = 38.1%
+-ML = 377.44  Scale est. = 9.7152    n = 3116
+
+$Metal
+
+Family: Tweedie(p=1.711) 
+Link function: log 
+
+Formula:
+A1 ~ ctime + s(lon, lat, bs = "ds", m = c(1, 0.5), k = 128) + 
+    offset(log(EFFORT))
+
+Parametric coefficients:
+              Estimate Std. Error t value Pr(>|t|)  
+(Intercept) -237.37311  125.98443  -1.884   0.0596 .
+ctime          0.11001    0.06239   1.763   0.0780 .
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Approximate significance of smooth terms:
+             edf Ref.df     F p-value    
+s(lon,lat) 50.99    127 1.343  <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+R-sq.(adj) =  0.00669   Deviance explained =   30%
+-ML = 346.25  Scale est. = 8.1222    n = 3116
+
+$Natural
+
+Family: Tweedie(p=1.688) 
+Link function: log 
+
+Formula:
+A1 ~ ctime + s(lon, lat, bs = "ds", m = c(1, 0.5), k = 128) + 
+    offset(log(EFFORT))
+
+Parametric coefficients:
+              Estimate Std. Error t value Pr(>|t|)
+(Intercept) -17.038065  99.655517  -0.171    0.864
+ctime         0.001599   0.049355   0.032    0.974
+
+Approximate significance of smooth terms:
+             edf Ref.df     F p-value    
+s(lon,lat) 43.56    127 2.522  <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+R-sq.(adj) =  0.00289   Deviance explained = 33.2%
+-ML = 735.18  Scale est. = 7.9475    n = 3116
+
+$Other
+
+Family: Tweedie(p=1.671) 
+Link function: log 
+
+Formula:
+A1 ~ ctime + s(lon, lat, bs = "ds", m = c(1, 0.5), k = 128) + 
+    offset(log(EFFORT))
+
+Parametric coefficients:
+             Estimate Std. Error t value Pr(>|t|)
+(Intercept) 100.66671   97.48246   1.033    0.302
+ctime        -0.05672    0.04828  -1.175    0.240
+
+Approximate significance of smooth terms:
+             edf Ref.df     F p-value    
+s(lon,lat) 59.79    127 3.294  <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+R-sq.(adj) =  -0.00313   Deviance explained = 42.4%
+-ML = 760.78  Scale est. = 6.765     n = 3116
+
+$Plastic
+
+Family: Tweedie(p=1.794) 
+Link function: log 
+
+Formula:
+A1 ~ ctime + s(lon, lat, bs = "ds", m = c(1, 0.5), k = 128) + 
+    offset(log(EFFORT))
+
+Parametric coefficients:
+            Estimate Std. Error t value Pr(>|t|)  
+(Intercept) 74.62990   41.11445   1.815   0.0696 .
+ctime       -0.04306    0.02036  -2.115   0.0345 *
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Approximate significance of smooth terms:
+             edf Ref.df     F p-value    
+s(lon,lat) 91.66    127 8.644  <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+R-sq.(adj) =  -0.00698   Deviance explained = 29.3%
+-ML = -772.94  Scale est. = 2.4548    n = 3116
+
+$Rubber
+
+Family: Tweedie(p=1.679) 
+Link function: log 
+
+Formula:
+A1 ~ ctime + s(lon, lat, bs = "ds", m = c(1, 0.5), k = 128) + 
+    offset(log(EFFORT))
+
+Parametric coefficients:
+            Estimate Std. Error t value Pr(>|t|)
+(Intercept) 64.75484   90.49052   0.716    0.474
+ctime       -0.03882    0.04482  -0.866    0.386
+
+Approximate significance of smooth terms:
+             edf Ref.df     F p-value    
+s(lon,lat) 59.05    127 3.493  <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+R-sq.(adj) =  -0.00796   Deviance explained =   38%
+-ML = 817.14  Scale est. = 6.263     n = 3116
+
+$SUP
+
+Family: Tweedie(p=1.731) 
+Link function: log 
+
+Formula:
+A1 ~ ctime + s(lon, lat, bs = "ds", m = c(1, 0.5), k = 128) + 
+    offset(log(EFFORT))
+
+Parametric coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 172.31334   49.42519   3.486 0.000497 ***
+ctime        -0.09211    0.02448  -3.763 0.000171 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Approximate significance of smooth terms:
+             edf Ref.df     F p-value    
+s(lon,lat) 77.81    127 6.524  <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+R-sq.(adj) =  -0.035   Deviance explained = 30.6%
+-ML = -639.76  Scale est. = 2.1724    n = 3116
+
+$Fishing.related
+
+Family: Tweedie(p=1.783) 
+Link function: log 
+
+Formula:
+A1 ~ ctime + s(lon, lat, bs = "ds", m = c(1, 0.5), k = 128) + 
+    offset(log(EFFORT))
+
+Parametric coefficients:
+              Estimate Std. Error t value Pr(>|t|)
+(Intercept) -22.381170  51.503542  -0.435    0.664
+ctime         0.004603   0.025507   0.180    0.857
+
+Approximate significance of smooth terms:
+             edf Ref.df     F p-value    
+s(lon,lat) 81.71    127 5.754  <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+R-sq.(adj) =  0.0368   Deviance explained = 22.1%
+-ML = -655.86  Scale est. = 3.1741    n = 3116
+
